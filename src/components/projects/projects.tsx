@@ -12,7 +12,6 @@ import quitfor from "../../assets/projects/quit-for.png";
 function Projects() {
   return (
     <Container fluid className="project-section">
-      <Particle />
       <Container>
         <h1 className="project-heading">
           My Recent <strong className="theme-color">Works </strong>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import myImg from "../../assets/photo.jpeg";
+import myImg from "../../assets/photo.png";
 import "../../style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,8 +8,8 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 function HomeBottom() {
   function calculateAge(birthday) {
-    var ageDifMs = Date.now() - birthday.getTime();
-    var ageDate = new Date(ageDifMs);
+    const ageDifMs = Date.now() - birthday.getTime();
+    const ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
@@ -42,7 +42,7 @@ function HomeBottom() {
               <br />
             </p>
           </Col>
-          <Col md={4} className="myAvtar">
+          <Col md={4} className="photo">
               <img src={myImg} className="img-fluid" alt="avatar" />
           </Col>
         </Row>

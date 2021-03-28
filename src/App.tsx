@@ -15,6 +15,7 @@ import Loader from "./components/loader/loader";
 import { ERoute } from "./types/enums/route.enum";
 import { CSSTransition } from "react-transition-group";
 import { useLocation } from "react-router-dom";
+import Particle from "./components/particle/particle";
 
 glide({
   name: "glide-left",
@@ -54,6 +55,7 @@ export default function App() {
         </CSSTransition>
       }
       <Navigation>
+        <Particle />
         <Navbar />
         {routes.map((r, index) => (
           <Route

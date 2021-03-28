@@ -46,7 +46,7 @@ function NavBar() {
       expanded={isExpanded}
       fixed="top"
       expand="md"
-      className={"sticky"}
+      className={"navbar__sticky"}
     >
       <Container>
         <Navbar.Brand href="/"></Navbar.Brand>

@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "../../style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Particle from "../particle/particle";
 import HomeBottom from "./home-bottom";
 import TypeWriterPosition from "./typewriter-position";
 
@@ -10,7 +9,6 @@ function Home() {
   return (
     <section>
       <Container fluid className="home-section" id="home">
-        <Particle />
         <Container className="home-content">
           <Row>
             <Col md={7} className="home-header">
@@ -29,7 +27,6 @@ function Home() {
 
             <Col md={5} style={{ paddingBottom: 20 }}>
               <TypeWriterPosition />
-
             </Col>
           </Row>
         </Container>

@@ -9,38 +9,44 @@ import laptopImg from "../../assets/about.png";
 import ReactTooltip from "react-tooltip";
 function About() {
   const icons = [
-    {name: 'javascript', type: 'plain'},
-    {name: 'typescript', type: 'plain'},
-    {name: 'git', type: 'plain'},
-    {name: 'nodejs', type: 'plain'},
-    {name: 'express', type: 'original'},
-    {name: 'react', type: 'original'},
-    {name: 'angularjs', type: 'plain'},
-    {name: 'mysql', type: 'plain'},
-    {name: 'wordpress', type: 'plain'},
-    {name: 'babel', type: 'plain'},
-    {name: 'apache', type: 'plain'},
-    {name: 'bash', type: 'plain'},
-    {name: 'docker', type: 'plain'},
-    {name: 'googlecloud', type: 'plain'},
-    {name: 'bootstrap', type: 'plain'},
-    {name: 'gulp', type: 'plain'},
-    {name: 'html5', type: 'plain'},
-    {name: 'ionic', type: 'original'},
-    {name: 'jquery', type: 'plain'},
-    {name: 'less', type: 'plain-wordmark'},
-    {name: 'nestjs', type: 'plain'},
-    {name: 'php', type: 'plain'},
-    {name: 'photoshop', type: 'plain'},
-    {name: 'sass', type: 'plain'},
-    {name: 'travis', type: 'plain'},
-    {name: 'ubuntu', type: 'plain'},
-    {name: 'webpack', type: 'plain'},
-  ]
+    { name: "javascript", type: "plain" },
+    { name: "typescript", type: "plain" },
+    { name: "git", type: "plain" },
+
+    { name: "react", type: "original" },
+    { name: "angularjs", type: "plain" },
+    { name: "ionic", type: "original" },
+    { name: "jquery", type: "plain" },
+
+    { name: "html5", type: "plain" },
+    { name: "css3", type: "plain" },
+    { name: "sass", type: "plain" },
+    { name: "less", type: "plain-wordmark" },
+    { name: "bootstrap", type: "plain" },
+    { name: "mysql", type: "plain" },
+    { name: "php", type: "plain" },
+    { name: "nodejs", type: "plain" },
+    { name: "express", type: "original" },
+    { name: "nestjs", type: "plain" },
+    { name: "babel", type: "plain" },
+    { name: "webpack", type: "plain" },
+    { name: "gulp", type: "plain" },
+
+    { name: "wordpress", type: "plain" },
+
+    { name: "bash", type: "plain" },
+    { name: "docker", type: "plain" },
+    { name: "googlecloud", type: "plain" },
+    { name: "travis", type: "plain" },
+
+    { name: "ubuntu", type: "plain" },
+    { name: "apple", type: "original" },
+  ];
   return (
     <Container fluid className="about-section">
-      <Particle />
       <Container>
+      {/* <Particle /> */}
+
         <Row style={{ justifyContent: "center", padding: "10px" }}>
           <Col
             md={7}
@@ -66,16 +72,21 @@ function About() {
         <h1 className="project-heading">
           Professional <strong className="theme-color">Skillset </strong>
         </h1>
+        <div>
         <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-          {
-            icons.map((i, key) => (
-              <Techstack name={i.name} iconName={`devicon-${i.name}-${i.type}`} key={key}/>
-            ))
-          }
+          {icons.map((i, key) => (
+            <Techstack
+              name={i.name}
+              iconName={`devicon-${i.name}-${i.type}`}
+              key={key}
+            />
+          ))}
         </Row>
-      </Container>
-      <ReactTooltip/>
+        </div>
+       
 
+      </Container>
+      <ReactTooltip />
     </Container>
   );
 }

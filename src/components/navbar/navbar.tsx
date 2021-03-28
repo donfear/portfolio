@@ -44,7 +44,6 @@ function NavBar() {
   return (
     <Navbar
       expanded={isExpanded}
-      fixed="top"
       expand="md"
       className={"navbar__sticky"}
     >

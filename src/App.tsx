@@ -42,39 +42,41 @@ export default function App() {
   ];
 
   return (
-    <div className="App">
-      {
-        <CSSTransition
-          in={isLoading}
-          appear={true}
-          unmountOnExit
-          classNames="fade"
-          timeout={300}
-        >
-          <Loader load={isLoading} />
-        </CSSTransition>
-      }
-      <Navigation>
-        <Particle />
-        <Navbar />
-        {routes.map((r, index) => (
-          <Route
-            path={r.path}
-            key={index}
-            screen
-            screenProps={{
-              style: {
-                ...(r.path !== location.pathname && {
-                  overflow: "hidden",
-                  height: 0,
-                }),
-              },
-            }}
+      <div className="App">
+        {
+          <CSSTransition
+            in={isLoading}
+            appear={true}
+            unmountOnExit
+            classNames="fade"
+            timeout={300}
           >
-            {r.component}
-          </Route>
-        ))}
-      </Navigation>
-    </div>
+            <Loader load={isLoading} />
+
+          </CSSTransition>
+        }
+
+        <Navigation>
+          <Particle />
+          {!isLoading && <Navbar />}
+          {routes.map((r, index) => (
+            <Route
+              path={r.path}
+              key={index}
+              screen
+              screenProps={{
+                style: {
+                  ...(r.path !== location.pathname && {
+                    overflow: "hidden",
+                    height: 0,
+                  }),
+                },
+              }}
+            >
+              {r.component}
+            </Route>
+          ))}
+        </Navigation>
+      </div>
   );
 }

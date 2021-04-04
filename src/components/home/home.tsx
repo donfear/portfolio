@@ -4,8 +4,11 @@ import "../../style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomeBottom from "./home-bottom";
 import TypeWriterPosition from "./typewriter-position";
+import { useTranslation } from 'react-i18next';
 
 function Home() {
+  const {t} = useTranslation();
+
   return (
     <section>
       <Container fluid className="home-section" id="home">
@@ -13,16 +16,15 @@ function Home() {
           <Row>
             <Col md={7} className="home-header">
               <h1 style={{ paddingBottom: 15 }} className="heading">
-                Welcome!
+                {t('Welcome')}!
               </h1>
 
               <h1 className="heading-name">
-                I'M
+                {t("I'M")}
                 <strong className="main-name"> MIHHAIL SOLOVJOV</strong>
               </h1>
 
-              <div style={{ padding: 50, textAlign: "left" }}>
-              </div>
+              <div style={{ padding: 50, textAlign: "left" }}></div>
             </Col>
 
             <Col md={5} style={{ paddingBottom: 20 }}>

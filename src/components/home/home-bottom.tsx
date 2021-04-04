@@ -3,10 +3,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../assets/photo.png";
 import "../../style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { useTranslation } from "react-i18next";
 
 function HomeBottom() {
+  const {t} = useTranslation();
+
   function calculateAge(birthday) {
     const ageDifMs = Date.now() - birthday.getTime();
     const ageDate = new Date(ageDifMs);
@@ -19,36 +22,43 @@ function HomeBottom() {
         <Row>
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="theme-color"> INTRODUCE </span> MYSELF
+              {t("LET ME")}{" "}
+              <span className="theme-color"> {t("INTRODUCE")} </span>{" "}
+              {t("MYSELF")}
             </h1>
             <p className="home-about-body">
-              I am {calculateAge(new Date('1997-09-19'))} years old, Estonian
+              {t("I Am")} {calculateAge(new Date("1997-09-19"))}{" "}
+              {t("years old")}, {t("Estonian")}
               <br />
               <br />
-              I speak English and Russian
+              {t("I speak English and Russian")}
               <br />
-              <br />I am good in 
+              <br />
+              {t("I am good in")}
               <i>
-                <b className="theme-color"> Teamwork, communication, leadership </b>
+                <b className="theme-color">
+                  {" "}
+                  {t("Teamwork, communication, leadership")}{" "}
+                </b>
               </i>
               <br />
               <br />
-              My current focus is &nbsp;
+              {t("My current focus is")} &nbsp;
               <i>
-                <b className="theme-color">
-                  Front End Development
-                </b>
+                <b className="theme-color">Front End Development</b>
               </i>
               <br />
             </p>
           </Col>
           <Col md={4} className="photo">
-              <img src={myImg} className="img-fluid" alt="avatar" />
+            <img src={myImg} className="img-fluid" alt="avatar" />
           </Col>
         </Row>
         <Row>
           <Col md={12} className="home-about-social">
-            <h1>FIND <span className="theme-color">ME</span> ON</h1>
+            <h1>
+              {t('FIND')} <span className="theme-color">{t('ME')}</span> {t('ON')}
+            </h1>
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a
@@ -60,7 +70,7 @@ function HomeBottom() {
                   <FontAwesomeIcon icon={faGithub} />
                 </a>
               </li>
-           
+
               <li className="social-icons">
                 <a
                   href="https://www.linkedin.com/in/mihhail-solovjov-258247158/"
@@ -71,7 +81,6 @@ function HomeBottom() {
                   <FontAwesomeIcon icon={faLinkedin} />
                 </a>
               </li>
-    
             </ul>
           </Col>
         </Row>

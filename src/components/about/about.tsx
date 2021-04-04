@@ -1,13 +1,14 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Particle from "../particle/particle";
 import "../../style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Techstack from "./techstack";
 import Aboutcard from "./about-card";
 import laptopImg from "../../assets/about.png";
 import ReactTooltip from "react-tooltip";
+import { useTranslation } from "react-i18next";
 function About() {
+  const {t} = useTranslation();
   const icons = [
     { name: "javascript", type: "plain" },
     { name: "typescript", type: "plain" },
@@ -45,8 +46,6 @@ function About() {
   return (
     <Container fluid className="about-section">
       <Container>
-      {/* <Particle /> */}
-
         <Row style={{ justifyContent: "center", padding: "10px" }}>
           <Col
             md={7}
@@ -57,7 +56,7 @@ function About() {
             }}
           >
             <h1 style={{ fontSize: "2.1em", paddingBottom: "20px" }}>
-              About <strong className="theme-color">ME</strong>
+              {t('About_')} <strong className="theme-color">{t('ME_')}</strong>
             </h1>
             <Aboutcard />
           </Col>
@@ -70,7 +69,7 @@ function About() {
           </Col>
         </Row>
         <h1 className="project-heading">
-          Professional <strong className="theme-color">Skillset </strong>
+          {t('Professional')} <strong className="theme-color">{t('Skillset')} </strong>
         </h1>
         <div>
         <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>

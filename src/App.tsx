@@ -2,7 +2,7 @@ import "./App.scss";
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./components/navbar/navbar";
+import Header from "./components/header/header";
 
 import Home from "./components/home/home";
 import Projects from "./components/projects/projects";
@@ -16,18 +16,25 @@ import { ERoute } from "./types/enums/route.enum";
 import { CSSTransition } from "react-transition-group";
 import { useLocation } from "react-router-dom";
 import Particle from "./components/particle/particle";
+import { useDI } from "./hooks/use-di";
 
 glide({
   name: "glide-left",
+  direction: "left",
 });
 glide({
   name: "glide-right",
   direction: "right",
 });
 export default function App() {
+  const DI = useDI();
+
   const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
+
+  DI.languageService().setLanguageFromStorage();
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -58,7 +65,7 @@ export default function App() {
 
         <Navigation>
           <Particle />
-          {!isLoading && <Navbar />}
+          {!isLoading && <Header />}
           {routes.map((r, index) => (
             <Route
               path={r.path}

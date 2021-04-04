@@ -7,12 +7,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-tiger-transition";
 import { ERoute } from "../../types/enums/route.enum";
-import {pure} from 'recompose';
+import { useTranslation } from "react-i18next";
+import { useDI } from "../../hooks/use-di";
+import { ELanguage } from "../../types/enums/language.enum";
+import { LanguageSelector } from "./language-selector";
 
-function NavBar() {
+function Header() {
   const [isExpanded, setIsExpanded] = useState(false);
   const location = useLocation();
+  const DI = useDI();
 
+  const { t, i18n } = useTranslation();
   const pathnames: ERoute[] = [
     ERoute.INDEX,
     ERoute.ABOUT,
@@ -24,29 +29,25 @@ function NavBar() {
     pathnames.indexOf(pathname) < pathnames.indexOf(location.pathname);
 
   const navItems = [
-    { label: "Home", to: ERoute.INDEX, transition: "glide-right" },
+    { label: t("Home"), to: ERoute.INDEX, transition: "glide-right" },
     {
-      label: "About",
+      label: t("About"),
       to: ERoute.ABOUT,
       transition: isBefore(ERoute.INDEX) ? "glide-right" : "glide-left",
     },
     {
-      label: "Projects",
+      label: t("Projects"),
       to: ERoute.PROJECTS,
       transition: isBefore(ERoute.ABOUT) ? "glide-right" : "glide-left",
     },
     {
-      label: "Resume",
+      label: t("Resume"),
       to: ERoute.RESUME,
       transition: isBefore(ERoute.PROJECTS) ? "glide-right" : "glide-left",
     },
   ];
   return (
-    <Navbar
-      expanded={isExpanded}
-      expand="md"
-      className={"navbar__sticky"}
-    >
+    <Navbar expanded={isExpanded} expand="md" className={"navbar__sticky"}>
       <Container>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle
@@ -78,6 +79,7 @@ function NavBar() {
                 </Link>
               </Nav.Item>
             ))}
+            <LanguageSelector setIsExpanded={(value: boolean) => setIsExpanded(value)}/>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -85,4 +87,4 @@ function NavBar() {
   );
 }
 
-export default pure(NavBar);
+export default Header;

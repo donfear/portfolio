@@ -223,20 +223,21 @@
   padding-top: 9em !important;
   border-radius: 50%;
   display: flex;
-}
-.photo img {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  filter: opacity(0.9);
-  transition: 0.25s all ease;
-  border: 1px solid $themeColorPrimary;
-  animation-name: easy-wave;
-  animation-iteration-count: infinite;
-  animation-duration: 3s;
-  &:hover {
-    scale: 1.1;
-    filter: opacity(1);
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    filter: opacity(0.9);
+    transition: 0.25s all ease;
+    border: 1px solid $themeColorPrimary;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-name: ScaleUpDown;
+
+    &:hover {
+      scale: 1.1;
+      filter: opacity(1);
+    }
   }
 }
 
@@ -372,10 +373,18 @@
 }
 
 .card {
+  &-body {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+  }
   align-items: center;
   padding-top: 20px !important;
   &-text {
     text-align: center !important;
+  }
+  &-title {
+    text-align: center;
   }
   &-img-top {
     opacity: 0.55 !important;
@@ -404,7 +413,6 @@
     box-shadow: none !important;
   }
 }
-
 
 /* --------- */
 /* About */
@@ -466,9 +474,12 @@
   }
 }
 .about-img {
+  display: flex;
+  justify-content: center;
   img {
     opacity: 0.5;
     transition: opacity 0.5s ease;
+
     &:hover {
       opacity: 1;
     }
@@ -481,6 +492,10 @@
 .resume {
   padding-top: 10px;
   padding-bottom: 50px;
+  &-download {
+    display: flex;
+    justify-content: center;
+  }
   &-section {
     position: relative !important;
     height: 100%;
@@ -546,4 +561,50 @@
     padding-right: 15px !important;
     padding-left: 15px !important;
   }
+}
+.dropdown-menu {
+  min-width: auto !important;
+  margin: 0px !important;
+  background: transparent !important;
+  border: 1px solid $themeColorPrimary !important;
+  top: 70px !important;
+  width: auto !important;
+  left: 16px !important;
+}
+.dropdown-item {
+  padding: 0 19px 0 19px !important;
+  &:focus, &:active {
+    outline: none !important;
+  }
+  &:hover {
+    background: transparent !important;
+  }
+  + & {
+    padding-top: 8px !important;
+  }
+}
+.language-selector__logo {
+
+}
+.nav-item.dropdown {
+  padding: 0.8rem 1rem !important;
+}
+@media (max-width: 767px) {
+  .nav-item {
+    .dropdown-toggle {
+      align-self: flex-start;
+    }
+    &.dropdown {
+      display: flex;
+      flex-direction: column;
+    }
+    .dropdown-menu {
+      align-self: flex-start;
+      margin-top: 10px !important;
+    }
+    .dropdown-item {
+      align-self: flex-start;
+    }
+  }
+ 
 }

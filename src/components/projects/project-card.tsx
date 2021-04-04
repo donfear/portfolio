@@ -5,8 +5,11 @@ import "../../style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
 function ProjectCards(props) {
+  const {t} = useTranslation();
+
   return (
     <Card className="project-card-view">
       <Card.Img variant="top" src={props.imgPath} alt="card-img" />
@@ -22,7 +25,7 @@ function ProjectCards(props) {
           }}
         >
           <Button variant="primary" href={props.link} target="_blank">
-            {"Live"}
+            {t("Live")}
           </Button>
           {props.githubLink && (
             <Button variant="primary" href={props.githubLink} target="_blank">

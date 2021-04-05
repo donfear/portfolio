@@ -16,7 +16,4 @@ export class LanguageService {
       : ELanguage.EN;
   }
 
-  setLanguageFromStorage() {
-      i18n.changeLanguage(this.getLanguage());
-  }
 }

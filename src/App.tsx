@@ -33,12 +33,10 @@ export default function App() {
 
   const location = useLocation();
 
-  DI.languageService().setLanguageFromStorage();
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1400);
+    }, 1700);
   }, []);
 
   const routes = [

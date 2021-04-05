@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -8,16 +8,14 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-tiger-transition";
 import { ERoute } from "../../types/enums/route.enum";
 import { useTranslation } from "react-i18next";
-import { useDI } from "../../hooks/use-di";
-import { ELanguage } from "../../types/enums/language.enum";
 import { LanguageSelector } from "./language-selector";
+import { useOnClickOutside } from "../../hooks/use-on-click-outside";
 
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false);
   const location = useLocation();
-  const DI = useDI();
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const pathnames: ERoute[] = [
     ERoute.INDEX,
     ERoute.ABOUT,
@@ -46,44 +44,57 @@ function Header() {
       transition: isBefore(ERoute.PROJECTS) ? "glide-right" : "glide-left",
     },
   ];
+  
+  const ref = useRef<any>();
+
+  useOnClickOutside(ref, () => {
+    setIsExpanded(false);
+  });
+
   return (
-    <Navbar expanded={isExpanded} expand="md" className={"navbar__sticky"}>
-      <Container>
-        <Navbar.Brand href="/"></Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
-          onClick={() => {
-            setIsExpanded(!isExpanded);
-          }}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </Navbar.Toggle>
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto" defaultActiveKey="#home">
-            {navItems.map(({ label, ...props }, key) => (
-              <Nav.Item
-                key={key}
-                onClick={() => {
-                  setIsExpanded(false);
-                }}
-              >
-                <Link
-                  {...props}
-                  className={`navbar-link ${
-                    location.pathname === props.to ? "navbar-link--active" : ""
-                  }`}
+    <div ref={ref}>
+      <Navbar expanded={isExpanded} expand="md" className={"navbar__sticky"}>
+        <Container>
+          <Navbar.Brand href="/"></Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+            }}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </Navbar.Toggle>
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto" defaultActiveKey="#home">
+              {navItems.map(({ label, ...props }, key) => (
+                <Nav.Item
+                  key={key}
+                  onClick={() => {
+                    setIsExpanded(false);
+                  }}
                 >
-                  {label}
-                </Link>
-              </Nav.Item>
-            ))}
-            <LanguageSelector setIsExpanded={(value: boolean) => setIsExpanded(value)}/>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+                  <Link
+                    {...props}
+                    className={`navbar-link ${
+                      location.pathname === props.to
+                        ? "navbar-link--active"
+                        : ""
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                </Nav.Item>
+              ))}
+              <LanguageSelector
+                setIsExpanded={(value: boolean) => setIsExpanded(value)}
+              />
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
   );
 }
 

@@ -37,7 +37,6 @@ function Projects() {
     {
       imgPath: quitfor,
       title: "Quit For",
-      githubLink: "https://github.com/donfear/portfolio",
       description: t("React Native application final work"),
       link:
         "https://play.google.com/store/apps/details?id=com.quitfor&hl=en&gl=US",

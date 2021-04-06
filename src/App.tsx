@@ -10,26 +10,26 @@ import About from "./components/about/about";
 import Resume from "./components/resume/resume";
 
 import "react-tiger-transition/styles/main.min.css";
-import { Navigation, Route, glide } from "react-tiger-transition";
+import { Navigation, Route, glideIn } from "react-tiger-transition";
 import Loader from "./components/loader/loader";
 import { ERoute } from "./types/enums/route.enum";
 import { CSSTransition } from "react-transition-group";
 import { useLocation } from "react-router-dom";
 import Particle from "./components/particle/particle";
-import { useDI } from "./hooks/use-di";
 
-glide({
-  name: "glide-left",
+glideIn({
+  name: "glideIn",
   direction: "left",
+  opacity: 0.1,
 });
-glide({
-  name: "glide-right",
+glideIn({
+  name: "glideOut",
   direction: "right",
+  opacity: 0.1,
 });
 export default function App() {
-  const DI = useDI();
-
   const [isLoading, setIsLoading] = useState(true);
+  const [isChangingRoute, setIsChangingRoute] = useState(false);
 
   const location = useLocation();
 
@@ -47,41 +47,39 @@ export default function App() {
   ];
 
   return (
-      <div className="App">
-        {
-          <CSSTransition
-            in={isLoading}
-            appear={true}
-            unmountOnExit
-            classNames="fade"
-            timeout={300}
+    <div className="App">
+      {
+        <CSSTransition
+          in={isLoading}
+          unmountOnExit
+          classNames="fade"
+          timeout={300}
+        >
+          <Loader load={isLoading} />
+        </CSSTransition>
+      }
+
+      <Navigation>
+        <Particle />
+        {!isLoading && <Header />}
+        {routes.map((r, index) => (
+          <Route
+            path={r.path}
+            key={index}
+            screen
+            screenProps={{
+              style: {
+                ...(r.path !== location.pathname && {
+                  overflow: "hidden",
+                  height: 0,
+                }),
+              },
+            }}
           >
-            <Loader load={isLoading} />
-
-          </CSSTransition>
-        }
-
-        <Navigation>
-          <Particle />
-          {!isLoading && <Header />}
-          {routes.map((r, index) => (
-            <Route
-              path={r.path}
-              key={index}
-              screen
-              screenProps={{
-                style: {
-                  ...(r.path !== location.pathname && {
-                    overflow: "hidden",
-                    height: 0,
-                  }),
-                },
-              }}
-            >
-              {r.component}
-            </Route>
-          ))}
-        </Navigation>
-      </div>
+            {r.component}
+          </Route>
+        ))}
+      </Navigation>
+    </div>
   );
 }

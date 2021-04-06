@@ -27,24 +27,28 @@ function Header() {
     pathnames.indexOf(pathname) < pathnames.indexOf(location.pathname);
 
   const navItems = [
-    { label: t("Home"), to: ERoute.INDEX, transition: "glide-right" },
+    {
+      label: t("Home"),
+      to: ERoute.INDEX,
+      transition: "glideOut",
+    },
     {
       label: t("About"),
       to: ERoute.ABOUT,
-      transition: isBefore(ERoute.INDEX) ? "glide-right" : "glide-left",
+      transition: isBefore(ERoute.INDEX) ? "glideOut" : "glideIn",
     },
     {
       label: t("Projects"),
       to: ERoute.PROJECTS,
-      transition: isBefore(ERoute.ABOUT) ? "glide-right" : "glide-left",
+      transition: isBefore(ERoute.ABOUT) ? "glideOut" : "glideIn",
     },
     {
       label: t("Resume"),
       to: ERoute.RESUME,
-      transition: isBefore(ERoute.PROJECTS) ? "glide-right" : "glide-left",
+      transition: isBefore(ERoute.PROJECTS) ? "glideOut" : "glideIn",
     },
   ];
-  
+
   const ref = useRef<any>();
 
   useOnClickOutside(ref, () => {

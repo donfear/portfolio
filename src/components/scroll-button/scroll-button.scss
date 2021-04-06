@@ -1,0 +1,24 @@
+@import '../../styles/index.scss';
+
+.scroll-button {
+    position: absolute;
+    bottom: 24px;
+    right: 48px;
+    &__icon {
+        background: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s all ease;
+        &:hover {
+            box-shadow: 0 0 16px $themeColorPrimary;
+        }
+        svg {
+            color: $themeColorPrimary;
+        }
+    }
+}

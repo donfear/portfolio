@@ -16,6 +16,7 @@ import { ERoute } from "./types/enums/route.enum";
 import { CSSTransition } from "react-transition-group";
 import { useLocation } from "react-router-dom";
 import Particle from "./components/particle/particle";
+import ScrollButton from "./components/scroll-button/scroll-button";
 
 glideIn({
   name: "glideIn",
@@ -79,6 +80,7 @@ export default function App() {
             {r.component}
           </Route>
         ))}
+        <ScrollButton screenIndex={routes.findIndex((r)=> r.path === location.pathname )}/>
       </Navigation>
     </div>
   );

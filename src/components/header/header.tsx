@@ -75,12 +75,13 @@ function Header() {
               {navItems.map(({ label, ...props }, key) => (
                 <Nav.Item
                   key={key}
-                  onClick={() => {
+                  onClick={(e) => {
                     setIsExpanded(false);
                   }}
                 >
                   <Link
                     {...props}
+                    replace
                     className={`navbar-link ${
                       location.pathname === props.to
                         ? "navbar-link--active"

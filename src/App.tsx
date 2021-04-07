@@ -54,7 +54,7 @@ export default function App() {
           in={isLoading}
           unmountOnExit
           classNames="fade"
-          timeout={300}
+          timeout={400}
         >
           <Loader load={isLoading} />
         </CSSTransition>
@@ -75,12 +75,14 @@ export default function App() {
                   height: 0,
                 }),
               },
+              id: r.path !== location.pathname ? "" : "active_screen",
             }}
           >
             {r.component}
           </Route>
         ))}
-        <ScrollButton screenIndex={routes.findIndex((r)=> r.path === location.pathname )}/>
+
+        <ScrollButton />
       </Navigation>
     </div>
   );

@@ -1,29 +1,42 @@
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./scroll-button.scss";
+import { CSSTransition } from "react-transition-group";
 
-export default function ScrollButton({ screenIndex }: { screenIndex: number }) {
+export default function ScrollButton() {
+  const [hasOverFlow, setHasOverFlow] = useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() =>
+      setHasOverFlow(
+        getScreenElement()?.offsetHeight < getScreenElement()?.scrollHeight
+      )
+    );
+  });
+
   function getScreenElement(): HTMLDivElement {
-    return document.querySelectorAll(".react-tiger-transition--screen")[
-      screenIndex === 0 ? 0 : 1
-    ] as HTMLDivElement;
+    return document.querySelector("#active_screen") as HTMLDivElement;
   }
 
   function handleButtonClick() {
-    getScreenElement()?.scrollTo?.({
+      const el = getScreenElement();
+      el?.scrollTo?.({
       top: Number.MAX_SAFE_INTEGER,
-      behavior: "smooth",
+      behavior: "smooth"
     });
   }
-  // TODO DETECT OVERFLOW AND HIDE
-//   console.log('has overflow', getScreenElement()?.offsetHeight < getScreenElement()?.scrollHeight)
 
   return (
-    <div className="scroll-button">
-      <div className="scroll-button__icon" onClick={() => handleButtonClick()}>
-        <FontAwesomeIcon icon={faAngleDown} />
+    <CSSTransition in={hasOverFlow} unmountOnExit classNames="fade" timeout={400}>
+      <div className="scroll-button">
+        <div
+          className="scroll-button__icon"
+          onClick={() => handleButtonClick()}
+        >
+          <FontAwesomeIcon icon={faAngleDown} />
+        </div>
       </div>
-    </div>
+    </CSSTransition>
   );
 }

@@ -37,15 +37,15 @@ function Header() {
       to: ERoute.ABOUT,
       transition: isBefore(ERoute.INDEX) ? "glideOut" : "glideIn",
     },
-    {
-      label: t("Projects"),
-      to: ERoute.PROJECTS,
-      transition: isBefore(ERoute.ABOUT) ? "glideOut" : "glideIn",
-    },
+    // {
+    //   label: t("Projects"),
+    //   to: ERoute.PROJECTS,
+    //   transition: isBefore(ERoute.ABOUT) ? "glideOut" : "glideIn",
+    // },
     {
       label: t("Resume"),
       to: ERoute.RESUME,
-      transition: isBefore(ERoute.PROJECTS) ? "glideOut" : "glideIn",
+      transition: isBefore(ERoute.ABOUT) ? "glideOut" : "glideIn",
     },
   ];
 

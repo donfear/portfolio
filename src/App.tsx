@@ -43,7 +43,7 @@ export default function App() {
   const routes = [
     { path: ERoute.INDEX, component: <Home /> },
     { path: ERoute.ABOUT, component: <About /> },
-    { path: ERoute.PROJECTS, component: <Projects /> },
+    // { path: ERoute.PROJECTS, component: <Projects /> },
     { path: ERoute.RESUME, component: <Resume /> },
   ];
 

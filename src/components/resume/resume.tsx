@@ -11,9 +11,9 @@ function Resume() {
   const {t} = useTranslation();
   const expirience = [
     {
-      title: "Full Stack Developer",
+      title: "ADN Games",
       date: `${t('Jule')} 2018 - ${t('Present')}`,
-      content: [t("Develop all kind of web apps using modern technologies")],
+      content: [t("Full Stack Developer")],
     },
   ];
   const education = [

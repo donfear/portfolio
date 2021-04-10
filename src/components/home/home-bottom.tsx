@@ -10,9 +10,9 @@ import { useTranslation } from "react-i18next";
 function HomeBottom() {
   const {t} = useTranslation();
 
-  function calculateAge(birthday) {
-    const ageDifMs = Date.now() - birthday.getTime();
-    const ageDate = new Date(ageDifMs);
+  function getMyAge() {
+    const birthday = new Date("1997-09-19")
+    const ageDate = new Date(Date.now() - birthday.getTime());
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
@@ -27,7 +27,7 @@ function HomeBottom() {
               {t("MYSELF")}
             </h1>
             <p className="home-about-body">
-              {t("I Am")} {calculateAge(new Date("1997-09-19"))}{" "}
+              {t("I Am")} {getMyAge()}{" "}
               {t("years old")}, {t("Estonian")}
               <br />
               <br />
